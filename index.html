@@ -15,12 +15,12 @@
         <!--=============== CSS ===============-->
         <link rel="stylesheet" href="assets/css/styles.css">
 
-        <title>Responsive Website Travel</title>
+        <title>Travel Planner</title>
     </head>
     <body>
         <header class="header" id="header">
             <nav class="nav container">
-                <a href="#" class="nav__logo">Travel</a>
+                <a href="#" class="nav__logo">Travel the World</a>
 
                 <div class="nav__menu" id="nav-menu">
                     <ul class="nav__list">
@@ -35,6 +35,9 @@
                         </li>
                         <li class="nav__item">
                             <a href="#place" class="nav__link">Places</a>
+                        </li>
+                         <li class="nav__item">
+                            <a href="#planner" class="nav__link">Plan your trip</a>
                         </li>
                     </ul>
 
@@ -333,6 +336,52 @@
                     </div>
                 </div>
             </section>
+    
+           <!--==================== PLAN TRAVEL ====================-->
+<section class="plan-travel section">
+    <div class="plan-travel__container container">
+        <h2 class="section__title">Plan Your Travel</h2>
+        <p class="plan-travel__description">Fill up the form below to plan your travel with us.</p>
+
+        <form action="#" class="plan-travel__form" id="plan-travel-form">
+            <div class="form-group">
+                <label for="destination">Destination:</label>
+                <input type="text" id="destination" name="destination" required>
+            </div>
+            <div class="form-group">
+                <label for="date">Travel Date:</label>
+                <input type="date" id="date" name="date" required>
+            </div>
+            <div class="form-group">
+                <label for="budget">Budget:</label>
+                <input type="number" id="budget" name="budget" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <button type="submit" class="button">Plan My Travel</button>
+        </form>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get the form element
+        const form = document.getElementById('plan-travel-form');
+
+        // Add event listener for form submission
+        form.addEventListener('submit', function(event) {
+            // Prevent default form submission
+            event.preventDefault();
+
+            // Show a pop-up message
+            alert('Your travel plan has been submitted successfully! We will contact you shortly.');
+        });
+    });
+</script>
+
+
 
             <!--==================== SUBSCRIBE ====================-->
             <section class="subscribe section">
