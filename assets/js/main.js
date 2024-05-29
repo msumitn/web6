@@ -3,6 +3,28 @@ const navMenu = document.getElementById('nav-menu'),
       navToggle = document.getElementById('nav-toggle'),
       navClose = document.getElementById('nav-close')
 
+document.addEventListener("DOMContentLoaded", function () {
+    const planTripButton = document.getElementById("plan-trip-button");
+    const popup = document.getElementById("popup");
+    const popupClose = document.getElementById("popup-close");
+
+    planTripButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        popup.style.display = "flex";
+    });
+
+    popupClose.addEventListener("click", function () {
+        popup.style.display = "none";
+    });
+
+    window.addEventListener("click", function (event) {
+        if (event.target === popup) {
+            popup.style.display = "none";
+        }
+    });
+});
+
+
 /*===== MENU SHOW =====*/
 /* Validate if constant exists */
 if(navToggle){
