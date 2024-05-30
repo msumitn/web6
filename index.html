@@ -430,7 +430,10 @@
     <script>
         document.getElementById('tripForm').addEventListener('submit', function(e) {
             e.preventDefault();
+onst handleSubmit = (event) => {
+  event.preventDefault();
 
+  const myForm = event.target;
             const formData = {
                 name: document.getElementById('name').value,
                 email: document.getElementById('email').value,
@@ -439,23 +442,18 @@
                 message: document.getElementById('message').value,
             };
 
-            fetch('/form', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            })
-            .then(response => response.json())
-            .then(data => {
-                alert('Form submitted successfully!');
-                console.log('Success:', data);
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-                alert('Form submitted. We will contact you back shortly.');
-            });
-        });
+           fetch("/", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams(formData).toString(),
+  })
+    .then(() => alert("Thank you for your submission"))
+    .catch((error) => alert(error));
+};
+
+document
+  .querySelector("form")
+  .addEventListener("submit", handleSubmit);
     </script>
 
 
