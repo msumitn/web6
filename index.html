@@ -402,26 +402,61 @@
 <div id="tripFormModal" class="modal">
   <div class="modal-content">
     <span class="close">&times;</span>
+    <h2>Plan Your Trip</h2>
     <form id="tripForm">
-      <label for="name">Name:</label>
-      <input type="text" id="name" name="name" required>
-      
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required>
-      
-      <label for="destination">Destination:</label>
-      <input type="text" id="destination" name="destination" required>
-      
-      <label for="date">Date:</label>
-      <input type="date" id="date" name="date" required>
-      
-      <label for="message">Message:</label>
-      <textarea id="message" name="message"></textarea>
-      
-      <button type="submit">Submit</button>
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div>
+            <label for="destination">Destination:</label>
+            <input type="text" id="destination" name="destination" required>
+        </div>
+        <div>
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required>
+        </div>
+        <div>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" required></textarea>
+        </div>
+        <button type="submit">Submit</button>
     </form>
-  </div>
-</div>
+
+    <script>
+        document.getElementById('tripForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                destination: document.getElementById('destination').value,
+                date: document.getElementById('date').value,
+                message: document.getElementById('message').value,
+            };
+
+            fetch('/form', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            })
+            .then(response => response.json())
+            .then(data => {
+                alert('Form submitted successfully!');
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                alert('Error submitting form.');
+            });
+        });
+    </script>
 
 
           
