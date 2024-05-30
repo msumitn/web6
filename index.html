@@ -95,7 +95,7 @@
                 <li class="nav__item"><a href="discover.html" class="nav__link">Discover</a></li>
                 <li class="nav__item"><a href="index.html#place" class="nav__link">Places</a></li>
                 <li class="nav__item">
-                            <a href="#plan-travel-form" class="nav__link"> <h4 class="flash">Plan Your Trip</h4></a>
+                <a href="#tripForm" class="nav__link"> <h4 class="flash">Plan Your Trip</h4></a>
                         </li>
 
             </ul>
@@ -403,43 +403,39 @@
         <h2 class="section__title">Plan Your Travel</h2>
         <p class="plan-travel__description">Fill up the form below to plan your travel with us.</p>
 
-        <form action="#" class="plan-travel__form" id="plan-travel-form" data-netlify="true">
-            <div class="form-group">
-                <label for="destination">Destination:</label>
-                <input type="text" id="destination" name="destination" required>
-            </div>
-            <div class="form-group">
-                <label for="date">Travel Date:</label>
-                <input type="date" id="date" name="date" required>
-            </div>
-            <div class="form-group">
-                <label for="budget">Budget:</label>
-                <input type="number" id="budget" name="budget" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <button type="submit" class="button">Plan My Travel</button>
-        </form>
-    </div>
-</section>
+        <form id="tripForm">
+    <input type="text" name="name" placeholder="Your Name" required>
+    <input type="email" name="email" placeholder="Your Email" required>
+    <input type="text" name="destination" placeholder="Destination" required>
+    <input type="date" name="date" required>
+    <button type="submit">Submit</button>
+</form>
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Get the form element
-        const form = document.getElementById('plan-travel-form');
+document.getElementById('tripForm').addEventListener('submit', function (e) {
+    e.preventDefault();
 
-        // Add event listener for form submission
-        form.addEventListener('submit', function(event) {
-            // Prevent default form submission
-            event.preventDefault();
+    const formData = new FormData(this);
+    const data = {};
+    formData.forEach((value, key) => (data[key] = value));
 
-            // Show a pop-up message
-            alert('Your travel plan has been submitted successfully! We will contact you shortly.');
-        });
+    fetch('http://localhost:5000/submit-form', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert('Form submitted successfully');
+    })
+    .catch((error) => {
+        alert('Error submitting form');
     });
+});
 </script>
+
             <!-- Popup Form -->
 <div class="popup" id="popup">
     <div class="popup__content">
@@ -467,6 +463,7 @@
     </div>
 </div>
 
+            
 
 
 
