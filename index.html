@@ -399,71 +399,32 @@
     
            <!--==================== PLAN TRAVEL ====================-->
 <section class="plan-travel section">
-    <div class="plan-travel__container container">
-        <h2 class="section__title">Plan Your Travel</h2>
-        <p class="plan-travel__description">Fill up the form below to plan your travel with us.</p>
-
-        <form id="tripForm">
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="email" name="email" placeholder="Your Email" required>
-    <input type="text" name="destination" placeholder="Destination" required>
-    <input type="date" name="date" required>
-    <button type="submit">Submit</button>
-</form>
-
-<script>
-document.getElementById('tripForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-
-    const formData = new FormData(this);
-    const data = {};
-    formData.forEach((value, key) => (data[key] = value));
-
-    fetch('http://localhost:5000/submit-form', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-    })
-    .then(response => response.json())
-    .then(data => {
-        alert('Form submitted successfully');
-    })
-    .catch((error) => {
-        alert('Error submitting form');
-    });
-});
-</script>
-
-            <!-- Popup Form -->
-<div class="popup" id="popup">
-    <div class="popup__content">
-        <span class="popup__close" id="popup-close">&times;</span>
-        <h2 class="popup__title">Plan Your Trip</h2>
-        <form class="popup__form">
-            <div class="popup__form-group">
-                <label for="name">Name</label>
-                <input type="text" id="name" class="popup__input" required>
-            </div>
-            <div class="popup__form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" class="popup__input" required>
-            </div>
-            <div class="popup__form-group">
-                <label for="destination">Destination</label>
-                <input type="text" id="destination" class="popup__input" required>
-            </div>
-            <div class="popup__form-group">
-                <label for="date">Date</label>
-                <input type="date" id="date" class="popup__input" required>
-            </div>
-            <button type="submit" class="button">Submit</button>
-        </form>
-    </div>
+<div id="tripFormModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <form id="tripForm">
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+      
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+      
+      <label for="destination">Destination:</label>
+      <input type="text" id="destination" name="destination" required>
+      
+      <label for="date">Date:</label>
+      <input type="date" id="date" name="date" required>
+      
+      <label for="message">Message:</label>
+      <textarea id="message" name="message"></textarea>
+      
+      <button type="submit">Submit</button>
+    </form>
+  </div>
 </div>
 
-            
+
+          
 
 
 
@@ -603,5 +564,6 @@ document.getElementById('tripForm').addEventListener('submit', function (e) {
 
         <!--=============== MAIN JS ===============-->
         <script src="assets/js/main.js"></script>
+    <script src="formHandler.js"></script>
     </body>
 </html>
